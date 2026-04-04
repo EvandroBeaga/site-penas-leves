@@ -1,0 +1,298 @@
+<!DOCTYPE html> <html lang="pt-br"> <head>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BioCompress — Tecnologia em Compressão</title> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Instrument+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIÁVEIS DE DESIGN --- */
+        :root {
+            --blue: #1e40af;       /* Define a cor azul padrão para reuso */
+            --blue-dark: #111827;  /* Define o azul escuro para o rodapé */
+            --green: #059669;      /* Define o verde para preços e status */
+            --wpp: #25d366;        /* Define o verde oficial do WhatsApp */
+            --bg: #F3F0EA;         /* Define a cor de fundo das páginas (creme) */
+            --bg-card: #FFFFFF;    /* Define o fundo branco dos cartões */
+            --text: #16181D;       /* Define a cor do texto principal (quase preto) */
+            --muted: #6B6860;      /* Define a cor para textos menos importantes (cinza) */
+            --border: #E2DDD5;     /* Define a cor das linhas divisórias */
+            --font-d: 'Syne', sans-serif; /* Atalho para a fonte de títulos */
+            --font-b: 'Instrument Sans', sans-serif; /* Atalho para a fonte de leitura */
+        }
+
+        /* --- RESET BÁSICO --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; } /* Remove margens padrão e ajusta cálculos de tamanho */
+        
+        body { 
+            background: var(--bg); /* Aplica a cor de fundo definida nas variáveis */
+            color: var(--text);    /* Aplica a cor de texto padrão */
+            font-family: var(--font-b); /* Define a fonte principal do site */
+            line-height: 1.6;      /* Define o espaçamento entre linhas para facilitar a leitura */
+        }
+
+        /* --- ESTILO DA BARRA DE AVISOS (TOPBAR) --- */
+        .topbar { 
+            background: var(--blue); /* Fundo azul */
+            color: white;            /* Texto branco */
+            font-family: var(--font-d); /* Fonte de título */
+            font-size: 0.65rem;      /* Tamanho da letra pequena */
+            font-weight: 700;        /* Letra em negrito */
+            text-transform: uppercase; /* Força todas as letras em maiúsculo */
+            padding: 0.6rem;         /* Espaçamento interno */
+            text-align: center;      /* Centraliza o texto */
+            letter-spacing: 1px;     /* Espaçamento entre as letras */
+        }
+
+        /* --- ESTILO DO MENU (NAVBAR) --- */
+        .navbar { 
+            background: var(--bg-card); /* Fundo branco */
+            padding: 1rem 5%;           /* Espaçamento: 1rem em cima/baixo, 5% nas laterais */
+            display: flex;              /* Ativa o modo de alinhamento flexível */
+            justify-content: space-between; /* Joga a logo para a esquerda e o status para a direita */
+            align-items: center;        /* Centraliza os itens verticalmente */
+            border-bottom: 1px solid var(--border); /* Linha fina embaixo do menu */
+            position: sticky;           /* Faz o menu "grudar" no topo ao rolar a página */
+            top: 0;                     /* Distância do topo para grudar */
+            z-index: 100;               /* Garante que o menu fique por cima de tudo */
+        }
+        .brand { font-family: var(--font-d); font-size: 1.4rem; font-weight: 800; color: var(--blue); text-decoration: none; } /* Estilo da Logo */
+        .brand span { color: var(--text); } /* Estilo da segunda parte da Logo */
+
+        /* --- ESTILO DO BANNER (HERO) --- */
+        .hero { 
+            background: var(--blue); /* Fundo azul */
+            color: white;            /* Texto branco */
+            padding: 3rem 5%;        /* Espaçamento interno */
+            text-align: center;      /* Centraliza tudo */
+        }
+        .hero-title { font-family: var(--font-d); font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; } /* Título que aumenta/diminui conforme a tela */
+
+        /* --- ESTRUTURA DE COLUNAS (GRID PRINCIPAL) --- */
+        .main-layout { 
+            max-width: 1200px;       /* Largura máxima do conteúdo do site */
+            margin: 3rem auto;       /* Centraliza o site na tela e dá espaço em cima/baixo */
+            padding: 0 5%;           /* Margem de segurança nas laterais */
+            display: grid;           /* Ativa o sistema de colunas */
+            grid-template-columns: 1fr 300px; /* Coluna 1: Espaço total / Coluna 2: 300px fixos (Lateral) */
+            gap: 2rem;               /* Espaço entre as duas colunas */
+        }
+
+        /* --- GRID DOS PRODUTOS (2 POR LINHA) --- */
+        .products-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* Divide o espaço em 2 colunas iguais */
+            gap: 1.5rem;             /* Espaço entre os cartões de produtos */
+        }
+
+        /* --- ESTILO DO CARTÃO DE PRODUTO --- */
+        .card { 
+            background: white;       /* Fundo branco */
+            border: 1px solid var(--border); /* Borda fina */
+            border-radius: 12px;     /* Arredonda os cantos */
+            overflow: hidden;        /* Garante que a imagem não saia da borda arredondada */
+            display: flex; 
+            flex-direction: column;  /* Organiza os itens (imagem, texto, botão) um abaixo do outro */
+        }
+        .img-box { background: #eee; aspect-ratio: 1/1; } /* Cria um quadrado perfeito para a imagem */
+        .img-box img { width: 100%; height: 100%; object-fit: cover; } /* Faz a foto preencher o quadrado sem distorcer */
+        .info { padding: 1.2rem; } /* Espaço interno do texto do produto */
+        .price { font-size: 1.2rem; font-weight: 800; color: var(--green); margin: 0.5rem 0; } /* Estilo do preço */
+        
+        .btn-buy { 
+            background: var(--wpp);  /* Cor verde do WhatsApp */
+            color: white;            /* Texto branco */
+            text-align: center;      /* Centraliza o texto no botão */
+            padding: 0.7rem;         /* Altura do botão */
+            display: block;          /* Faz o botão ocupar a largura toda do cartão */
+            text-decoration: none;   /* Remove o sublinhado de link */
+            font-weight: 700;        /* Texto em negrito */
+            border-radius: 6px;      /* Cantos levemente arredondados */
+        }
+
+        /* --- ESTILO DA LATERAL (SIDEBAR) --- */
+        .sidebar { 
+            background: white;       /* Fundo branco */
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 1.5rem; 
+            height: fit-content;     /* O fundo só vai até onde acaba o texto */
+            position: sticky;        /* Faz a lateral acompanhar a rolagem */
+            top: 100px;              /* Fica parada a 100px do topo ao rolar */
+        }
+        .sidebar-title { font-family: var(--font-d); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 0.4rem; }
+        
+        .sponsor-item { text-align: center; margin-bottom: 1.5rem; } /* Espaço entre cada logo de parceiro */
+        .sponsor-logo { 
+            background: #f9f9f9; 
+            height: 60px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 6px; 
+            border: 1px dashed var(--border); /* Borda tracejada para os logos */
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            color: var(--muted); 
+        }
+
+        /* --- ESTILO DOS DEPOIMENTOS --- */
+        .testimonials { background: rgba(30,64,175,0.05); padding: 5rem 5%; border-top: 1px solid var(--border); } /* Fundo azul bem clarinho */
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 2rem auto 0; } /* Organiza depoimentos automaticamente */
+        .test-card { background: white; padding: 2rem; border-radius: 16px; border: 1px solid var(--border); } /* Bloco branco do depoimento */
+        .test-avatar { width: 40px; height: 40px; background: var(--blue); border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; margin-right: 0.8rem; } /* Círculo com as iniciais do nome */
+        .test-author { display: flex; align-items: center; margin-top: 1.5rem; } /* Alinha a foto e o nome do autor */
+
+        /* --- ESTILO QUEM SOMOS --- */
+        .about-section { background: white; padding: 5rem 5%; border-top: 1px solid var(--border); }
+        .about-container { max-width: 800px; margin: 0 auto; text-align: center; } /* Centraliza o texto de apresentação */
+        .about-title { font-family: var(--font-d); font-size: 2rem; color: var(--blue); margin-bottom: 1.5rem; }
+
+        /* --- ESTILO DO RODAPÉ (FOOTER) --- */
+        .footer { background: var(--blue-dark); color: rgba(255,255,255,0.6); padding: 4rem 5% 2rem; } /* Fundo azul escuro, texto quase branco */
+        .footer-grid { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Divide as colunas de dados da loja */
+            gap: 3rem; 
+        }
+        .footer-col h4 { color: white; font-family: var(--font-d); margin-bottom: 1.2rem; font-size: 0.9rem; text-transform: uppercase; }
+        .footer-bottom { 
+            max-width: 1200px; 
+            margin: 3rem auto 0; 
+            padding-top: 2rem; 
+            border-top: 1px solid rgba(255,255,255,0.1); /* Linha divisória discreta no fim */
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.75rem; 
+        }
+
+        /* --- AJUSTES PARA CELULAR (RESPONSIVIDADE) --- */
+        @media (max-width: 900px) { 
+            .main-layout { grid-template-columns: 1fr; } /* No tablet/celular, lateral vai para baixo e produtos ocupam largura toda */
+            .sidebar { order: 2; } /* Garante que os patrocinadores fiquem depois dos produtos */
+        }
+        @media (max-width: 550px) { 
+            .products-grid { grid-template-columns: 1fr; } /* Em celulares pequenos, exibe 1 produto por linha para não espremer a foto */
+        }
+
+        /* --- BOTÃO FLUTUANTE --- */
+        .float-wpp { 
+            position: fixed; /* Fica parado na tela, independente da rolagem */
+            bottom: 2rem; 
+            right: 2rem; 
+            background: var(--wpp); 
+            color: white; 
+            padding: 1rem 1.5rem; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra para dar profundidade */
+            z-index: 1000; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">?? Frete Grátis acima de R$199 • ??? 30 dias para trocas</div>
+
+    <nav class="navbar">
+        <a href="#" class="brand">Bio<span>Compress</span></a> <div style="font-size: 0.75rem; font-weight: 600; color: var(--green)">? LOJA OFICIAL</div> </nav>
+
+    <header class="hero">
+        <h1 class="hero-title">Pernas leves e saudáveis.</h1>
+        <p>Tecnologia medicinal para o seu conforto diário.</p>
+    </header>
+
+    <div class="main-layout">
+        
+        <section>
+            <h2 style="font-family: var(--font-d); margin-bottom: 1.5rem;">Nossos Modelos</h2>
+            <div class="products-grid">
+                
+                <div class="card">
+                    <div class="img-box"><img src="https://images.unsplash.com/photo-1582552938357-32b906df40cb?q=80&w=400"></div> <div class="info">
+                        <h3 style="font-size: 1rem;">Meia Bio Black Edition</h3> <p class="price">R$ 119,90</p> <a href="https://wa.me/5531999999999?text=Olá! Tenho interesse na Meia Black Edition" class="btn-buy">Pedir no WhatsApp</a> </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-box"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=400"></div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">Sport Confort Sporty</h3>
+                        <p class="price">R$ 89,90</p>
+                        <a href="https://wa.me/5531999999999?text=Olá! Tenho interesse na Sporty" class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <h3 class="sidebar-title">Apoio e Parcerias</h3>
+            <div class="sponsor-item"><div class="sponsor-logo">Logo Parceiro 1</div></div> <div class="sponsor-item"><div class="sponsor-logo">Logo Parceiro 2</div></div>
+            <div class="sponsor-item"><div class="sponsor-logo">Logo Parceiro 3</div></div>
+        </aside>
+    </div>
+
+    <section class="testimonials">
+        <h2 style="text-align: center; font-family: var(--font-d); color: var(--blue);">O que dizem nossos clientes</h2>
+        <div class="test-grid">
+            
+            <div class="test-card">
+                <p style="font-style: italic;">"Uso para trabalhar e minhas pernas não incham mais. Recomendo!"</p>
+                <div class="test-author">
+                    <div class="test-avatar">RC</div> <div>
+                        <h5 style="font-size:0.9rem;">Ricardo Costa</h5> <span style="font-size:0.7rem; color:var(--muted)">Professor</span> </div>
+                </div>
+            </div>
+
+            <div class="test-card">
+                <p style="font-style: italic;">"Comprei para viajar e foi excelente. Muito confortável."</p>
+                <div class="test-author">
+                    <div class="test-avatar">MA</div>
+                    <div><h5 style="font-size:0.9rem;">Mariana Almeida</h5><span style="font-size:0.7rem; color:var(--muted)">Arquiteta</span></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-container">
+            <h2 class="about-title">Quem Somos</h2>
+            <p style="margin-bottom: 1rem; color: var(--muted);">A BioCompress nasceu com a missão de unir saúde e tecnologia têxtil...</p> <p style="color: var(--muted);">Trabalhamos apenas com materiais certificados para garantir bem-estar absoluto.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            
+            <div class="footer-col">
+                <h4>BioCompress</h4>
+                <p>CNPJ: 00.000.000/0001-00</p> <p>?? Belo Horizonte - MG</p> </div>
+
+            <div class="footer-col">
+                <h4>Atendimento</h4>
+                <p>?? contato@biocompress.com.br</p> <p>?? (31) 99999-9999</p> </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BioCompress. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5531999999999" class="float-wpp">Atendimento WhatsApp</a>
+
+</body>
+</html>
+
+
+------------------------------------------------------------------------------------------------------------
+
+O que você aprendeu com esses comentários:
+Tags HTML (<div>, <section>, <footer>): Elas são como caixas que organizam o conteúdo.
+
+Estilos CSS (padding, margin, color): Eles controlam a "pintura" e o "espaçamento" do site.
+
+Variáveis (--blue, --green): Elas permitem que você mude a cor do site inteiro em um único lugar (lá no topo do código).
+
+Responsividade (@media): São as regras que dizem ao site como se comportar quando a tela diminui.

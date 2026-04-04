@@ -1,0 +1,67 @@
+/* PALETA DE CORES - Altere aqui à vontade */
+:root {
+    --cor-fundo: #f8fafc;
+    --cor-primaria: #1e40af; /* Azul Escuro */
+    --cor-secundaria: #ffffff;
+    --cor-texto: #1f2937;
+    --cor-whatsapp: #25d366;
+    --cor-preco: #059669;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: sans-serif;
+}
+
+.main-header {
+    background-color: var(--cor-secundaria);
+    padding: 3rem 1rem;
+    text-align: center;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.loja-logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--cor-primaria);
+}
+
+.card-produto {
+    background: var(--cor-secundaria);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card-produto:hover {
+    transform: translateY(-8px);
+}
+
+.img-produto {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.titulo-produto {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.preco-produto {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--cor-preco);
+}
+
+.link-wpp {
+    background-color: var(--cor-whatsapp);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioCompress — Tecnologia em Compressão</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Instrument+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --blue: #1e40af;
+            --blue-dark: #111827;
+            --green: #059669;
+            --wpp: #25d366;
+            --bg: #F3F0EA;
+            --bg-card: #FFFFFF;
+            --text: #16181D;
+            --muted: #6B6860;
+            --border: #E2DDD5;
+            --font-d: 'Syne', sans-serif;
+            --font-b: 'Instrument Sans', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-b);
+            line-height: 1.6;
+        }
+
+        .topbar {
+            background: var(--blue);
+            color: white;
+            font-family: var(--font-d);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.6rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .navbar {
+            background: var(--bg-card);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        .hero {
+            background: var(--blue);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: var(--font-d);
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .main-layout {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .img-box {
+            background: #fff;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .info {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--green);
+            margin: 0.5rem 0;
+        }
+
+        .btn-buy {
+            background: var(--wpp);
+            color: white;
+            text-align: center;
+            padding: 0.7rem;
+            display: block;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 6px;
+        }
+
+        .sidebar {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-title {
+            font-family: var(--font-d);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--blue);
+            border-bottom: 2px solid var(--blue);
+            padding-bottom: 0.4rem;
+        }
+
+        .sponsor-logo {
+            background: #f9f9f9;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            border: 1px dashed var(--border);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            background: rgba(30, 64, 175, 0.05);
+            padding: 5rem 5%;
+            border-top: 1px solid var(--border);
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+
+        .test-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .test-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .test-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--blue);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 0.8rem;
+        }
+
+        .about-section {
+            background: white;
+            padding: 5rem 5%;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer {
+            background: var(--blue-dark);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-family: var(--font-d);
+            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+        }
+
+        .float-wpp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--wpp);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">🚚 Frete a combinar • 🛡️ 30 dias para trocas</div>
+
+    <nav class="navbar">
+        <a href="#" class="brand">
+            <img src="Logo.png" alt="Pernas Leves BioCompress">
+        </a>
+        <div style="font-size: 0.75rem; font-weight: 600; color: var(--green)">● LOJA OFICIAL</div>
+    </nav>
+
+    <header class="hero">
+        <h1 class="hero-title">Pernas leves e saudáveis.</h1>
+        <p>Tecnologia medicinal para o seu conforto diário.</p>
+    </header>
+
+    <div class="main-layout">
+        <section>
+            <h2 style="font-family: var(--font-d); margin-bottom: 1.5rem;">Nossos Modelos</h2>
+            <div class="products-grid">
+
+                <div class="card">
+                    <div class="img-box"><img
+                            src="https://http2.mlstatic.com/D_NQ_NP_2X_870954-MLB83358512453_032025-F-meia-de-compresso-34-panturrilha-sigvaris-confort-premium.webp">
+                    </div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">Meia de compressão Graduada - Panturrilha Ponteira Aberta TAM M3 -
+                            NATURAL ESCURO</h3>
+                        <p class="price">R$ 260,00</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia de compressão Graduada M3 - Natural Escuro"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-box"><img
+                            src="https://http2.mlstatic.com/D_NQ_NP_2X_870954-MLB83358512453_032025-F-meia-de-compresso-34-panturrilha-sigvaris-confort-premium.webp">
+                    </div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">Meia de compressão Graduada - Panturrilha Ponteira Aberta TAM M2 -
+                            NATURAL ESCURO</h3>
+                        <p class="price">R$ 260,00</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia de compressão Graduada M2 - Natural Escuro"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-box"><img
+                            src="https://images.tcdn.com.br/img/img_prod/1109462/90_meia_panturrilha_performance_20_30mmhg_37_40_preta_tam_m_sigvaris_1421_2_9e70355de3047f3cfc03b0ed24e8dbe2.png">
+                    </div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">MEIA ESPORTIVA COM COMPRESSÃO Panturrilha Performance (37-40) TAM
+                            M2 - PRETA</h3>
+                        <p class="price">R$ 242,90</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia Esportiva Performance M2 Preta"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-box"><img
+                            src="https://images.tcdn.com.br/img/img_prod/1109462/90_meia_panturrilha_performance_20_30mmhg_37_40_preta_tam_m_sigvaris_1421_2_9e70355de3047f3cfc03b0ed24e8dbe2.png">
+                    </div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">MEIA ESPORTIVA COM COMPRESSÃO Panturrilha Performance (41-44) TAM
+                            M3 - PRETA</h3>
+                        <p class="price">R$ 242,90</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia Esportiva Performance M3 Preta"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-box"><img
+                            src="https://images.tcdn.com.br/img/img_prod/1109462/90_meia_panturrilha_performance_20_30mmhg_37_40_preta_tam_m_sigvaris_1421_2_9e70355de3047f3cfc03b0ed24e8dbe2.png">
+                    </div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">MEIA ESPORTIVA COM COMPRESSÃO Panturrilha Performance (37-40) TAM
+                            G2 - PRETA</h3>
+                        <p class="price">R$ 242,00</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia Esportiva Performance G2 Preta"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-box"><img
+                            src="https://images.tcdn.com.br/img/img_prod/1109462/90_meia_panturrilha_performance_20_30mmhg_37_40_preta_tam_m_sigvaris_1421_2_9e70355de3047f3cfc03b0ed24e8dbe2.png">
+                    </div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">MEIA ESPORTIVA COM COMPRESSÃO Panturrilha Performance (41-44) TAM
+                            G3 - PRETA</h3>
+                        <p class="price">R$ 242,00</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia Esportiva Performance G3 Preta"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-box"><img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUGeixmBcvxK-qz8TCPqAaZhwzAR-eXCDzw&s">
+                    </div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">MEIA SUAVE COMPRESSÃO - Panturrilha Hobby TAM: G - Grafite Urbano
+                        </h3>
+                        <p class="price">R$ 170,00</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia Suave Compressão Hobby G Grafite"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-box"><img
+                            src="https://lojasigvaris.vtexassets.com/arquivos/ids/161297-1600-1600?v=638763489359770000">
+                    </div>
+                    <div class="info">
+                        <h3 style="font-size: 1rem;">Calçador de meia (Auxiliar)</h3>
+                        <p class="price">R$ 130,00</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir o Calçador de Meia"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <h3 class="sidebar-title">Apoiadores e Parceiros</h3>
+
+            <div class="sponsor-item" style="margin-bottom: 1.5rem;">
+                <div class="sponsor-logo"
+                    style="height: auto; border: 1px solid #E2DDD5; padding: 15px; background: #ffffff; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                    <img src="static/Nova pasta/Sigvaris.png" alt="Sigvaris Group"
+                        style="width: 100%; height: auto; max-height: 100px; display: block; object-fit: contain;">
+                </div>
+            </div>
+
+            <div class="sponsor-item">
+                <div class="sponsor-logo"
+                    style="height: 40px; border: 1px dashed #E2DDD5; background: transparent; display: flex; align-items: center; justify-content: center;">
+                    <span
+                        style="font-size: 0.65rem; color: #b0adaa; text-transform: uppercase; letter-spacing: 1px;">Espaço
+                        para Parceiro</span>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <section class="testimonials">
+        <h2 style="text-align: center; font-family: var(--font-d); color: var(--blue);">O que dizem nossos clientes</h2>
+        <div class="test-grid">
+            <div class="test-card">
+                <p style="font-style: italic;">"Uso para trabalhar e minhas pernas não incham mais. Recomendo!"</p>
+                <div class="test-author">
+                    <div class="test-avatar">RC</div>
+                    <div>
+                        <h5 style="font-size:0.9rem;">Ricardo Costa</h5>
+                        <span style="font-size:0.7rem; color:var(--muted)">Professor</span>
+                    </div>
+                </div>
+            </div>
+            <div class="test-card">
+                <p style="font-style: italic;">"Comprei para viajar e foi excelente. Muito confortável."</p>
+                <div class="test-author">
+                    <div class="test-avatar">MA</div>
+                    <div>
+                        <h5 style="font-size:0.9rem;">Mariana Almeida</h5>
+                        <span style="font-size:0.7rem; color:var(--muted)">Arquiteta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-container">
+            <h2 class="about-title">Quem Somos</h2>
+            <p style="margin-bottom: 1rem; color: var(--muted);">A <strong>Pernas Leves</strong> nasceu com a missão de
+                unir saúde e tecnologia têxtil. Somos especialistas em meias de compressão que proporcionam liberdade de
+                movimento e bem-estar no cotidiano.</p>
+            <p style="color: var(--muted);">Trabalhamos apenas com materiais certificados para garantir que a compressão
+                graduada ajude na circulação e previna a fadiga muscular de forma segura.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Pernas Leves</h4>
+                <p>CNPJ: 00.000.000/0001-00</p>
+                <p>📍 Belo Horizonte - MG</p>
+            </div>
+            <div class="footer-col">
+                <h4>Atendimento</h4>
+                <p>📧 contato@pernasleves.com.br</p>
+                <p>📞 (31) 999215004</p>
+            </div>
+            <div class="footer-col">
+                <h4>Formas de Pagamento</h4>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                    <div
+                        style="background: white; color: #111827; padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold;">
+                        PIX</div>
+                    <div
+                        style="background: white; color: #111827; padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold;">
+                        CARTÃO</div>
+                    <div
+                        style="background: white; color: #111827; padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold;">
+                        BOLETO</div>
+                </div>
+                <p style="font-size: 0.7rem; margin-top: 15px; color: rgba(255,255,255,0.4);">💳 Parcelamento em até 3x
+                    sem juros</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pernas Leves. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5531999215004" class="float-wpp">Atendimento WhatsApp</a>
+
+</body>
+
+</html>
