@@ -67,7 +67,8 @@
         }
 
         .brand img {
-            height: 50px;
+            height: 80px;
+            /* Antes era 50px */
             width: auto;
             display: block;
         }
@@ -110,8 +111,16 @@
             transition: transform 0.2s;
         }
 
+        .card {
+            /* ... outras propriedades que já estão lá ... */
+            transition: all 0.3s ease;
+            /* Adicione isso para a animação ficar suave */
+        }
+
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: var(--blue);
         }
 
         .img-box {
@@ -300,11 +309,17 @@
 
 <body>
 
-    <div class="topbar">🚚 Frete a combinar • 🛡️ 30 dias para trocas</div>
+    <div class="topbar">🚚 Frete a combinar • 🛡️ Agilidade e rapidez </div>
 
     <nav class="navbar">
-        <a href="#" class="brand">
-            <img src="Logo.png" alt="Pernas Leves BioCompress">
+        <a href="#" class="brand" style="display: flex; align-items: center; text-decoration: none; gap: 15px;">
+            <img src="logo leg comfort1.png" alt="Leg Comfort" style="height: 80px; width: auto;">
+            <span
+                style="font-family: var(--font-d); font-size: 1.6rem; color: var(--blue); font-weight: 800; line-height: 1.1; display: flex; flex-direction: column;">
+                Leg Comfort
+                <small
+                    style="font-size: 0.9rem; font-weight: 400; color: var(--muted); font-family: var(--font-b);">Meias</small>
+            </span>
         </a>
         <div style="font-size: 0.75rem; font-weight: 600; color: var(--green)">● LOJA OFICIAL</div>
     </nav>
@@ -324,7 +339,7 @@
                             src="https://http2.mlstatic.com/D_NQ_NP_2X_870954-MLB83358512453_032025-F-meia-de-compresso-34-panturrilha-sigvaris-confort-premium.webp">
                     </div>
                     <div class="info">
-                        <h3 style="font-size: 1rem;">Meia de compressão Graduada - Panturrilha Ponteira Aberta TAM M3 -
+                        <h3 style="font-size: 1rem;">Meia de compressão graduada - Panturrilha Ponteira Aberta TAM M3 -
                             NATURAL ESCURO</h3>
                         <p class="price">R$ 260,00</p>
                         <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia de compressão Graduada M3 - Natural Escuro"
@@ -337,7 +352,7 @@
                             src="https://http2.mlstatic.com/D_NQ_NP_2X_870954-MLB83358512453_032025-F-meia-de-compresso-34-panturrilha-sigvaris-confort-premium.webp">
                     </div>
                     <div class="info">
-                        <h3 style="font-size: 1rem;">Meia de compressão Graduada - Panturrilha Ponteira Aberta TAM M2 -
+                        <h3 style="font-size: 1rem;">Meia de compressão graduada - Panturrilha Ponteira Aberta TAM M2 -
                             NATURAL ESCURO</h3>
                         <p class="price">R$ 260,00</p>
                         <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia de compressão Graduada M2 - Natural Escuro"
@@ -381,7 +396,7 @@
                         <p class="price">R$ 242,00</p>
                         <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia Esportiva Performance G2 Preta"
                             class="btn-buy">Pedir no WhatsApp</a>
-                    </div> 
+                    </div>
                 </div>
 
                 <div class="card">
@@ -398,8 +413,8 @@
                 </div>
 
                 <div class="card">
-                    <div class="img-box"><img
-                            src="https://lojasigvaris.vtexassets.com/arquivos/ids/159413-150-150?v=638763487942730000&width=150&height=150&aspect=true">
+                    <div class="img-box">
+                        <img src="static/grafite-urbano.png" alt="Meia Suave">
                     </div>
                     <div class="info">
                         <h3 style="font-size: 1rem;">MEIA SUAVE COMPRESSÃO - Panturrilha Hobby TAM: G - Grafite Urbano
@@ -477,7 +492,7 @@
     <section class="about-section">
         <div class="about-container">
             <h2 class="about-title">Quem Somos</h2>
-            <p style="margin-bottom: 1rem; color: var(--muted);">A <strong>Pernas Leves</strong> nasceu com a missão de
+            <p style="margin-bottom: 1rem; color: var(--muted);">A <strong>Leg Comfort</strong> nasceu com a missão de
                 unir saúde e tecnologia têxtil. Somos especialistas em meias de compressão que proporcionam liberdade de
                 movimento e bem-estar no cotidiano.</p>
             <p style="color: var(--muted);">Trabalhamos apenas com materiais certificados para garantir que a compressão
@@ -488,7 +503,7 @@
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>Pernas Leves</h4>
+                <h4>Leg Comfort</h4>
                 <p>CNPJ: 00.000.000/0001-00</p>
                 <p>📍 Belo Horizonte - MG</p>
             </div>
@@ -515,7 +530,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Pernas Leves. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Leg Comfort. Todos os direitos reservados.</p>
         </div>
     </footer>
 
