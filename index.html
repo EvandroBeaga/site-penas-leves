@@ -108,13 +108,10 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s;
-        }
-
-        .card {
-            /* ... outras propriedades que já estão lá ... */
+            /* Organiza o conteúdo em pé */
             transition: all 0.3s ease;
-            /* Adicione isso para a animação ficar suave */
+            height: 100%;
+            /* Força o card a ocupar a altura total da linha */
         }
 
         .card:hover {
@@ -140,9 +137,23 @@
         .info {
             padding: 1.2rem;
             flex-grow: 1;
+            /* Faz esta parte esticar para preencher o fundo do card */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: 空间-between;
+            /* Empurra o botão de compra sempre para o final */
+        }
+
+        .info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            /* Limita o título a 2 linhas para não quebrar o layout se o texto for longo */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.4em;
+            /* Garante espaço para 2 linhas mesmo em títulos curtos */
         }
 
         .price {
@@ -307,8 +318,21 @@
     </style>
 </head>
 
-<body>
+<link rel="icon" href="favicon.png" type="image/png">
 
+<!-- Imagem que aparece no compartilhamento -->
+<meta property="og:image" content="https://www.legcomfort.com.br/sua-logo-grande.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Título e Descrição -->
+<meta property="og:title" content="Leg Comfort - Estilo e Conforto">
+<meta property="og:description" content="Conheça nossa vitrine de produtos exclusivos.">
+<meta property="og:url" content="https://www.legcomfort.com.br">
+
+<body>
+    <!-- Cabeçalho do site (inicio)-->
     <div class="topbar">🚚 Frete a combinar • 🛡️ Agilidade e rapidez </div>
 
     <nav class="navbar">
@@ -327,7 +351,10 @@
     <header class="hero">
         <h1 class="hero-title">Pernas leves e saudáveis.</h1>
         <p>Tecnologia medicinal para o seu conforto diário.</p>
+
     </header>
+
+    <!-- Inicio da vitrini da loja de produtos  -->
 
     <div class="main-layout">
         <section>
@@ -339,7 +366,7 @@
                             src="https://http2.mlstatic.com/D_NQ_NP_2X_870954-MLB83358512453_032025-F-meia-de-compresso-34-panturrilha-sigvaris-confort-premium.webp">
                     </div>
                     <div class="info">
-                        <h3 style="font-size: 1rem;">Meia de compressão graduada - Panturrilha Ponteira Aberta TAM M3 -
+                        <h3 style="font-size: 1rem;">MEIA DE COMPRESSÃO GRADUADA - Panturrilha Ponteira Aberta TAM M3 -
                             NATURAL ESCURO</h3>
                         <p class="price">R$ 260,00</p>
                         <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia de compressão Graduada M3 - Natural Escuro"
@@ -352,7 +379,8 @@
                             src="https://http2.mlstatic.com/D_NQ_NP_2X_870954-MLB83358512453_032025-F-meia-de-compresso-34-panturrilha-sigvaris-confort-premium.webp">
                     </div>
                     <div class="info">
-                        <h3 style="font-size: 1rem;">Meia de compressão graduada - Panturrilha Ponteira Aberta TAM M2 -
+                        <h3 style="font-size: 1rem;">
+                            MEIA DE COMPRESSÃO GRADUADA - Panturrilha Ponteira Aberta TAM M2 -
                             NATURAL ESCURO</h3>
                         <p class="price">R$ 260,00</p>
                         <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia de compressão Graduada M2 - Natural Escuro"
@@ -430,23 +458,52 @@
                             src="https://lojasigvaris.vtexassets.com/arquivos/ids/161297-1600-1600?v=638763489359770000">
                     </div>
                     <div class="info">
-                        <h3 style="font-size: 1rem;">Calçador de meia (Auxiliar)</h3>
+                        <h3 style="font-size: 1rem;">CALÇADOR DE MEIAS (Auxiliar)</h3>
                         <p class="price">R$ 130,00</p>
                         <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir o Calçador de Meia"
                             class="btn-buy">Pedir no WhatsApp</a>
                     </div>
                 </div>
+                <!-- Dois novos produtos nas linhas de baixo -->
+
+                <div class="card">
+                    <div class="img-box">
+                        <img src="static/essencial.png" alt="Meia Sigvaris Select Comfort">
+                    </div>
+                    <div class="info">
+                        <h3>MEIA SIGAVRIS ESSENCIAL COMFORT 20-30mmhg 3/4 Ponteira Aberta</h3>
+                        <p class="price">R$ CONSULTAR PREÇO</p>
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir Meia Sigvaris Select Comfort 20-30mmhg 3/4 Ponteira Aberta"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div> <!-- O fechamento do card deve ser AQUI, depois da info -->
+
+
+                <div class="card">
+                    <div class="img-box">
+                        <img src="static/traveno.png" alt="Meia De Viagem Sigvaris Traveno">
+                    </div>
+                    <div class="info">
+                        <h3>MEIA DE VIAGEM SIGVARIS TRAVENO Ref. 170 Tamanho P - Cinza - Unissex </h3>
+                        <p class="price">R$ CONSULTAR PREÇO</p>
+                        <!-- Corrigido o texto do link abaixo -->
+                        <a href="https://wa.me/5531999215004?text=Olá! Gostaria de pedir a Meia De Viagem Sigvaris Traveno Ref. 170"
+                            class="btn-buy">Pedir no WhatsApp</a>
+                    </div>
+                </div> <!-- O fechamento do card deve ser AQUI, depois da info -->
+                <!-- Fim da vitrini nessa linha  -->
 
             </div>
         </section>
-
+        <!-- Inicio do sidebar lateral de apoiadores e parceiros -->
         <aside class="sidebar">
             <h3 class="sidebar-title">Apoiadores e Parceiros</h3>
 
             <div class="sponsor-item" style="margin-bottom: 1.5rem;">
-               <div class="sidebar-box" style="display: flex; justify-content: center; align-items: center; padding: 15px;">
-                <img src="static/sigvaris.png" alt="Sigvaris Group" style="width: 100%; max-width: 140px; height: auto; display: block;">
-            </div>
+                <div class="sidebar-box" style="padding: 10px; display: flex; justify-content: center;">
+                    <img src="static/sigvaris.png" alt="Sigvaris Group"
+                        style="width: 100%; max-width: 150px; height: auto;">
+                </div>
             </div>
 
             <div class="sponsor-item">
@@ -460,6 +517,7 @@
         </aside>
 
     </div>
+    <!-- Inicios de depoimentos de clientes e compradores  -->
 
     <section class="testimonials">
         <h2 style="text-align: center; font-family: var(--font-d); color: var(--blue);">O que dizem nossos clientes</h2>
@@ -486,6 +544,7 @@
             </div>
         </div>
     </section>
+    <!-- Quem somos e rodapé do site  -->
 
     <section class="about-section">
         <div class="about-container">
@@ -507,7 +566,7 @@
             </div>
             <div class="footer-col">
                 <h4>Atendimento</h4>
-                <p>📧 contato@pernasleves.com.br</p>
+                <p>📧 meiaslegcomfort@gmail.com</p>
                 <p>📞 (31) 999215004</p>
             </div>
             <div class="footer-col">
